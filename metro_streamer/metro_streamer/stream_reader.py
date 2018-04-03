@@ -19,7 +19,7 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 
-from metro_miner import auth_config, config, setup_logging
+from metro_streamer import auth_config, config, setup_logging
 
 KAFKA_SERVER = config['kafka']['servers']
 KAFKA_CLIENT_ID = config['kafka']['client_id']
@@ -124,4 +124,4 @@ if __name__ == '__main__':
     listener = TwitterListener()
     # twitter stream configuration and start
     stream = Stream(oauth, listener)
-    stream.filter(track=METRO_KEYWORDS + METRO_STATIONS, follow=TWITTER_ACCOUNTS, async=True)
+    stream.filter(track=METRO_KEYWORDS + METRO_STATIONS, follow=TWITTER_ACCOUNTS, languages=["es", "en"], async=True)
