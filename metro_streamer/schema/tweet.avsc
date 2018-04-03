@@ -1,0 +1,50 @@
+{
+  "namespace": "metro-miner.tweet",
+  "type": "record",
+  "name": "Tweet",
+  "doc": "Tweet data structure used by the stream reader and sent to the parser",
+  "fields": [
+    {
+      "name": "text",
+      "doc": "tweet text",
+      "type": "string"
+    },
+    {
+      "name": "date",
+      "doc": "tweet creation date",
+      "type": "string"
+    },
+    {
+      "name": "user_id",
+      "doc": "user id of the tweet creator",
+      "type": "int"
+    },
+    {
+      "name": "place",
+      "doc": "city o POI where the tweet was written",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    {
+      "name": "country",
+      "doc": "country where the tweet was written",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    {
+      "name": "country_code",
+      "doc": "code of the country where the tweet was written",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    }
+  ]
+}
