@@ -81,15 +81,22 @@ class TwitterListener(StreamListener):
         :return: true to keep the steam connected
         """
         logger.debug('Received tweet: %s', status.text)
+        tweet_text = status.text
         # form the tweet object with the data
         if hasattr(status, 'retweeted_status'):
             status = status.retweeted_status
+        # check if the tweet_text has been truncated
+        if status.truncated is True:
+            tweet_text = status.extended_tweet['full_text']
         if hasattr(status, 'quoted_status'):
-            status.text = status.text + status.quoted_status['text']
+            quoted_text = status.quoted_status['text']
+            if status.quoted_status['truncated'] is True:
+                quoted_text = status.quoted_status['extended_tweet']['full_text']
+            tweet_text = tweet_text + quoted_text
         if status.place is None:
-            tweet_data = generate_tweet_dict(status.text, status.created_at, status.user.id)
+            tweet_data = generate_tweet_dict(tweet_text, status.created_at, status.user.id)
         else:
-            tweet_data = generate_tweet_dict(status.text, status.created_at, status.user.id, status.place.name,
+            tweet_data = generate_tweet_dict(tweet_text, status.created_at, status.user.id, status.place.name,
                                              status.place.country, status.place.country_code)
         # encode and send tweet
         producer.send(topic=KAFKA_TOPIC, value=tweet_data).add_errback(on_send_error)

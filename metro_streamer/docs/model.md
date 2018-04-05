@@ -11,6 +11,11 @@ In the attribute `text` is where the content of the tweet resides. There are thr
 - **Is an answer to a tweet:** When the user answer another tweet and initiates a conversation.
 - **Is a retweet:** When the user retweet another user tweet.
 
+Due to the different changes in the restrictions limits that Twitter has been making, allowing more than 144 characters
+and not including links in the count, sometimes the tweet text is truncated. When this happens, the attribute 
+`truncated` is `True` and an dictionary with the full tweet information is added to the status object. The full text of
+the text can be found inside the `extended_tweet` dictionary in the `full_text` attribute.  
+
 Depending of the case, the interesting information can be found in different parts of the object received by the API.
 
 #### Original tweet
