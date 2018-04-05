@@ -81,11 +81,11 @@ class TwitterListener(StreamListener):
         :return: true to keep the steam connected
         """
         logger.debug('Received tweet: %s', status.text)
-        tweet_text = status.text
         # form the tweet object with the data
         if hasattr(status, 'retweeted_status'):
             status = status.retweeted_status
         # check if the tweet_text has been truncated
+        tweet_text = status.text
         if status.truncated is True:
             tweet_text = status.extended_tweet['full_text']
         if hasattr(status, 'quoted_status'):

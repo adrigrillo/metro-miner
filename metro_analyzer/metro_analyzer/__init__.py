@@ -27,8 +27,6 @@ import json
 import logging.config
 import os
 
-auth_config = configparser.ConfigParser()
-auth_config.read('authentication.ini')
 config = configparser.ConfigParser()
 config.read('config.ini')
 
