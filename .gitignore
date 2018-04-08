@@ -191,5 +191,8 @@ venv.bak/
 !.vscode/extensions.json
 .history
 
+### JupyterNotebook ###
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
 
 # End of https://www.gitignore.io/api/linux,python,jetbrains+iml,visualstudiocode
